@@ -2,35 +2,128 @@
 
 <head>
 
-    <title>GMF</title>
+    <title>Elephant</title>
 
     <style>
+
+        @font-face {
+            font-family: 'THEBOLDFONT', sans-serif;
+            src: url("font/THEBOLDFONT 2022.otf") format("otf"),
+                url("font/THEBOLDFONT.ttf") format("ttf"),;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'THEBOLDFONT', sans-serif;
+        }
     
         body {
-            display: grid;    
-            justify-items: center;
-            align-items: center;
-
             background-color: #f8fcff;
+            margin: 0px;
+            padding: 25px;
         }
     
-        section {
-            display: flex;
-            flex-direction: row;
-    
-            column-gap: 8px;
-        }
-        
-        section > div {
+        main {
             display: flex;
             flex-direction: column;
+            align-items: center;
+
+            height: 100%;
+        }
+
+        main > div.img {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        main > div.img > img {
+            width: 131.5px;
+            height: 119px;
+        }
+
+        main > div.img > span {
+            font-size: 22px;
+            text-align: center;
+            font-weight: 900;
+            color: #777bb3;
         }
         
-        section > div > div {
+        main > section.main {
+            display: grid;
+
+            grid-template-rows: 1fr 1fr;
+
+            height: 100%;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        main > section.main > section.msg {
+            text-align: center;
+        }
+
+        main > section.main > section.form {
             display: flex;
             flex-direction: row;
+            align-items: center;
     
-            column-gap: 4px;
+            column-gap: 8px;
+
+            height: 100%;
+            width: 100%;
+        }
+        
+        main > section.main > section.form section.final {
+            display: flex;
+            flex-direction: row;
+        }
+        
+        main > section.main > section.form div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        input, select {
+            border-radius: 4px;
+
+            padding: 4.5px 5px;
+
+            text-align: center;
+
+            border: 1px solid #63679d;
+            background-color: rgb(250, 250, 250);
+
+            -webkit-transition: all .1s;
+            transition: all .1s ease-in-out;
+
+            outline-style: none;
+        }
+
+        button {
+            border-radius: 4px;
+
+            height: 28px;
+            width: 25px;
+
+            color: whitesmoke;
+            font-weight: bold;
+
+            border: 1px solid #63679d;
+        }
+
+        button.minus{
+            background-color: #e75f5f;
+        }
+
+        button.plus{
+            background-color: #6683cf;
+        }
+
+        span.hidden {
+            color: transparent;
         }
     
         .none {
@@ -45,88 +138,108 @@
 
 <body>
     
-    <section>
-        <div>
-            <select name="acao">
-                <option value="ATT">ATT</option>
-                <option value="DEBUG">DEBUG</option>
-                <option value="NEW">NEW</option>
-                <option value="REFAT">REFAT</option>
-                <option value="RENAME">RENAME</option>
-                <option value="REPLACE">REPLACE</option>
-            </select>
+    <main>
+
+        <div class="img">
+            <img src="logo.png" alt="Logo">
+            <span>Elephant Git Message</span>
         </div>
-        <div name="area">
-            <select name="area" id="all">
-                <option value="API">API</option>
-                <option value="BACKEND">BACKEND</option>
-                <option value="ENGINE">ENGINE</option>
-                <option value="FRONTEND">FRONTEND</option>
-                <option value="PAGE">PAGE</option>
-                <option value="SCRIPT">SCRIPT</option>
-            </select>
-            <select name="area" id="few">
-                <option value="API">API</option>
-                <option value="ENGINE">ENGINE</option>
-                <option value="PAGE">PAGE</option>
-                <option value="SCRIPT">SCRIPT</option>
-            </select>
-        </div>
-        <div name="atualizacao">
-            <div>
-                <input type="text" name="lote">
-                {
-                    <input type="text" name="detalhe">
-                    <div name="estado">
-                        [
+
+        <section class="main">
+            <section class="form">
+                <div>
+                    Ação
+                    <select name="acao">
+                        <option value="ATT">ATT</option>
+                        <option value="DEBUG">DEBUG</option>
+                        <option value="NEW">NEW</option>
+                        <option value="REFAT">REFAT</option>
+                        <option value="RENAME">RENAME</option>
+                        <option value="REPLACE">REPLACE</option>
+                    </select>
+                </div>
+                <section name="area">
+                    <div>
+                        Área
+                        <select name="area" id="all">
+                            <option value="API">API</option>
+                            <option value="BACKEND">BACKEND</option>
+                            <option value="ENGINE">ENGINE</option>
+                            <option value="FRONTEND">FRONTEND</option>
+                            <option value="PAGE">PAGE</option>
+                            <option value="SCRIPT">SCRIPT</option>
+                        </select>
+                        <select name="area" id="few">
+                            <option value="API">API</option>
+                            <option value="ENGINE">ENGINE</option>
+                            <option value="PAGE">PAGE</option>
+                            <option value="SCRIPT">SCRIPT</option>
+                        </select>
+                    </div>
+                </section>
+                <section name="atualizacao">
+                    <section class="final">
+                        <div>
+                            Lote
+                            <input name="lote">
+                        </div>
+                        <div>
+                            Detalhe
+                            <input name="detalhe">
+                        </div>
+                        <div>
+                            Estado
                             <select name="estado">
                                 <option value="js">just start</option>
                                 <option value="wo">working on</option>
                                 <option value="af">almost finished</option>
                                 <option value="ok">ok</option>
                             </select>
-                        ]
+                        </div>
+                        
+                        <div>
+                            <span class="hidden">_</span>
+                            <button class="plus" onclick="newInput('desc')">+</button>
+                        </div>
+                        <div>
+                            <span class="hidden">_</span>
+                            <button class="minus" onclick="newInput('desc')">-</button>
+                        </div>
+                    </section>
+                </section>
+                <section name="mudanca">
+                    <div>
+                        Antigo
+                        <input name="antigo">
                     </div>
-                }
-            </div>
-        </div>
-        <div name="mudanca">
-            <div>
-                <input type="text" name="antigo">
-                =>
-            </div>
-        </div>
-        <div name="mudanca">
-            <input type="text" name="novo">
-        </div>
-        <div name="lista">
-            <div>
-                {
-                    <input type="text" name="lista">
-                }
-            </div>
-        </div>
-        <div name="raiz">
-            <input type="text" name="raiz">
-        </div>
-    </section>
-    <section>
-        <span></span>
-    </section>
+                    <div>
+                        Novo
+                        <input name="novo">
+                    </div>
+                </section>
+                <div>
+                    Lista
+                    <input name="lista">
+                </div>
+                <div>
+                    Raiz
+                    <input name="raiz">
+                </div>
+            </section>
+            <section class="msg"></section>
+        </section>
+    </main>
     
     <script>
-    
+
         var acao = document.querySelector("select[name='acao']");
-    
-        var div_area = document.querySelector("div[name='area']");
-        var div_atualizacao = document.querySelector("div[name='atualizacao']");
-        var div_estado = document.querySelector("div[name='estado']");
-        var div_mudanca = document.querySelectorAll("div[name='mudanca']");
-        var div_lista = document.querySelector("div[name='lista']");
-        var div_raiz = document.querySelector("div[name='raiz']");
-    
-        var span = document.querySelector("span");
-    
+        
+        var section_area = document.querySelector("section[name='area']");
+        var section_atualizacao = document.querySelector("section[name='atualizacao']");
+        var section_mudanca = document.querySelector("section[name='mudanca']");
+
+        var msg = document.querySelector(".msg");
+
         var input_area_all = document.querySelector("select[name='area']#all");
         var input_area_few = document.querySelector("select[name='area']#few");
         var input_lote = document.querySelector("input[name='lote']");
@@ -136,91 +249,105 @@
         var input_novo = document.querySelector("input[name='novo']");
         var input_lista = document.querySelector("input[name='lista']");
         var input_raiz = document.querySelector("input[name='raiz']");
-    
+
         var all = document.querySelectorAll("input, select");
-    
-    
+
+
         function acaoInput(input){
-    
+
             if(acao.value == "ATT" || acao.value == "DEBUG" || acao.value == "REFAT"){
-    
-                div_area.classList.remove('none');
+
+                section_area.classList.remove('none');
                 input_area_all.classList.remove('none');
                 input_area_few.classList.add('none');
-                div_atualizacao.classList.remove('none');
-                div_estado.classList.remove('none');
-                div_mudanca.forEach((mudanca) => {mudanca.classList.add('none')});
-                div_lista.classList.add('none');
-                div_raiz.classList.remove('none');
-    
+                section_atualizacao.classList.remove('none');
+                input_estado.classList.remove('none');
+                section_mudanca.classList.add('none');
+                input_lista.classList.add('none');
+                input_raiz.classList.remove('none');
+
             }if(acao.value == "NEW"){
-    
-                div_area.classList.remove('none');
+
+                section_area.classList.remove('none');
                 input_area_all.classList.add('none');
                 input_area_few.classList.remove('none');
-                div_atualizacao.classList.remove('none');
-                div_estado.classList.add('none');
-                div_mudanca.forEach((mudanca) => {mudanca.classList.add('none')});
-                div_lista.classList.add('none');
-                div_raiz.classList.remove('none');
-    
+                section_atualizacao.classList.remove('none');
+                input_estado.classList.add('none');
+                section_mudanca.classList.add('none');
+                input_lista.classList.add('none');
+                input_raiz.classList.remove('none');
+
             }if(acao.value == "REPLACE"){
-    
-                div_area.classList.add('none');
-                div_atualizacao.classList.add('none');
-                div_mudanca.forEach((mudanca) => {mudanca.classList.remove('none')});
-                div_lista.classList.remove('none');
-                div_raiz.classList.add('none');
-    
+
+                section_area.classList.add('none');
+                section_atualizacao.classList.add('none');
+                section_mudanca.classList.remove('none');
+                input_lista.classList.remove('none');
+                input_raiz.classList.add('none');
+
             }if(acao.value == "RENAME"){
-    
-                div_area.classList.add('none');
-                div_atualizacao.classList.add('none');
-                div_mudanca.forEach((mudanca) => {mudanca.classList.remove('none')});
-                div_lista.classList.add('none');
-                div_raiz.classList.remove('none');
-    
+
+                section_area.classList.add('none');
+                section_atualizacao.classList.add('none');
+                section_mudanca.classList.remove('none');
+                input_lista.classList.add('none');
+                input_raiz.classList.remove('none');
+
             }
-    
+
         }
-    
+
         function writeCommit(){
             if(acao.value == "ATT" || acao.value == "DEBUG" || acao.value == "REFAT"){
-    
-                span.innerHTML = 
+
+                msg.innerHTML = 
                     acao.value + " | " + input_area_all.value + " | " +
                     input_lote.value + " { " + input_detalhe.value + " [ " + 
                     input_estado.value + " ] } | " + input_raiz.value;
-    
+
             }if(acao.value == "NEW"){
-    
-                span.innerHTML = 
+
+                msg.innerHTML = 
                     acao.value + " | " + input_area_few.value + " | " +
                     input_lote.value + " { " + input_detalhe.value + " } | " + 
                     input_raiz.value;
-    
+
             }if(acao.value == "REPLACE"){
-    
-                span.innerHTML = 
+
+                msg.innerHTML = 
                     acao.value + " | " + input_antigo.value + " => " +
                     input_novo.value + " | { " + input_lista.value + " }";
-    
+
             }if(acao.value == "RENAME"){
-    
-                span.innerHTML = 
+
+                msg.innerHTML = 
                     acao.value + " | " + input_antigo.value + " => " +
                     input_novo.value + " | " + input_raiz.value;
-    
+
             }
         }
-    
-    
+
+        function newInput(where){
+            if(where == "desc"){
+
+                var new_section = document.createElement('section');
+                new_section.className = "final";
+
+                new_section.appendChild(input_lote.cloneNode(true));
+                new_section.appendChild(input_detalhe.cloneNode(true));
+                new_section.appendChild(input_estado.cloneNode(true));
+                
+                section_atualizacao.appendChild(new_section);
+            }
+        }
+
+
         acaoInput();
         
         acao.addEventListener("input", () => {
             acaoInput();
         });
-    
+
         all.forEach((tag) => {
             tag.addEventListener("input", () => {
                 writeCommit();

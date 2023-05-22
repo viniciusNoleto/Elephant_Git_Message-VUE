@@ -1,0 +1,234 @@
+
+
+<head>
+
+    <title>GMF</title>
+
+    <style>
+    
+        body {
+            display: grid;    
+            justify-items: center;
+            align-items: center;
+
+            background-color: #f8fcff;
+        }
+    
+        section {
+            display: flex;
+            flex-direction: row;
+    
+            column-gap: 8px;
+        }
+        
+        section > div {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        section > div > div {
+            display: flex;
+            flex-direction: row;
+    
+            column-gap: 4px;
+        }
+    
+        .none {
+            display: none !important;
+        }
+    
+    </style>
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+</head>
+
+<body>
+    
+    <section>
+        <div>
+            <select name="acao">
+                <option value="ATT">ATT</option>
+                <option value="DEBUG">DEBUG</option>
+                <option value="NEW">NEW</option>
+                <option value="REFAT">REFAT</option>
+                <option value="RENAME">RENAME</option>
+                <option value="REPLACE">REPLACE</option>
+            </select>
+        </div>
+        <div name="area">
+            <select name="area" id="all">
+                <option value="API">API</option>
+                <option value="BACKEND">BACKEND</option>
+                <option value="ENGINE">ENGINE</option>
+                <option value="FRONTEND">FRONTEND</option>
+                <option value="PAGE">PAGE</option>
+                <option value="SCRIPT">SCRIPT</option>
+            </select>
+            <select name="area" id="few">
+                <option value="API">API</option>
+                <option value="ENGINE">ENGINE</option>
+                <option value="PAGE">PAGE</option>
+                <option value="SCRIPT">SCRIPT</option>
+            </select>
+        </div>
+        <div name="atualizacao">
+            <div>
+                <input type="text" name="lote">
+                {
+                    <input type="text" name="detalhe">
+                    <div name="estado">
+                        [
+                            <select name="estado">
+                                <option value="js">just start</option>
+                                <option value="wo">working on</option>
+                                <option value="af">almost finished</option>
+                                <option value="ok">ok</option>
+                            </select>
+                        ]
+                    </div>
+                }
+            </div>
+        </div>
+        <div name="mudanca">
+            <div>
+                <input type="text" name="antigo">
+                =>
+            </div>
+        </div>
+        <div name="mudanca">
+            <input type="text" name="novo">
+        </div>
+        <div name="lista">
+            <div>
+                {
+                    <input type="text" name="lista">
+                }
+            </div>
+        </div>
+        <div name="raiz">
+            <input type="text" name="raiz">
+        </div>
+    </section>
+    <section>
+        <span></span>
+    </section>
+    
+    <script>
+    
+        var acao = document.querySelector("select[name='acao']");
+    
+        var div_area = document.querySelector("div[name='area']");
+        var div_atualizacao = document.querySelector("div[name='atualizacao']");
+        var div_estado = document.querySelector("div[name='estado']");
+        var div_mudanca = document.querySelectorAll("div[name='mudanca']");
+        var div_lista = document.querySelector("div[name='lista']");
+        var div_raiz = document.querySelector("div[name='raiz']");
+    
+        var span = document.querySelector("span");
+    
+        var input_area_all = document.querySelector("select[name='area']#all");
+        var input_area_few = document.querySelector("select[name='area']#few");
+        var input_lote = document.querySelector("input[name='lote']");
+        var input_detalhe = document.querySelector("input[name='detalhe']");
+        var input_estado = document.querySelector("select[name='estado']");
+        var input_antigo = document.querySelector("input[name='antigo']");
+        var input_novo = document.querySelector("input[name='novo']");
+        var input_lista = document.querySelector("input[name='lista']");
+        var input_raiz = document.querySelector("input[name='raiz']");
+    
+        var all = document.querySelectorAll("input, select");
+    
+    
+        function acaoInput(input){
+    
+            if(acao.value == "ATT" || acao.value == "DEBUG" || acao.value == "REFAT"){
+    
+                div_area.classList.remove('none');
+                input_area_all.classList.remove('none');
+                input_area_few.classList.add('none');
+                div_atualizacao.classList.remove('none');
+                div_estado.classList.remove('none');
+                div_mudanca.forEach((mudanca) => {mudanca.classList.add('none')});
+                div_lista.classList.add('none');
+                div_raiz.classList.remove('none');
+    
+            }if(acao.value == "NEW"){
+    
+                div_area.classList.remove('none');
+                input_area_all.classList.add('none');
+                input_area_few.classList.remove('none');
+                div_atualizacao.classList.remove('none');
+                div_estado.classList.add('none');
+                div_mudanca.forEach((mudanca) => {mudanca.classList.add('none')});
+                div_lista.classList.add('none');
+                div_raiz.classList.remove('none');
+    
+            }if(acao.value == "REPLACE"){
+    
+                div_area.classList.add('none');
+                div_atualizacao.classList.add('none');
+                div_mudanca.forEach((mudanca) => {mudanca.classList.remove('none')});
+                div_lista.classList.remove('none');
+                div_raiz.classList.add('none');
+    
+            }if(acao.value == "RENAME"){
+    
+                div_area.classList.add('none');
+                div_atualizacao.classList.add('none');
+                div_mudanca.forEach((mudanca) => {mudanca.classList.remove('none')});
+                div_lista.classList.add('none');
+                div_raiz.classList.remove('none');
+    
+            }
+    
+        }
+    
+        function writeCommit(){
+            if(acao.value == "ATT" || acao.value == "DEBUG" || acao.value == "REFAT"){
+    
+                span.innerHTML = 
+                    acao.value + " | " + input_area_all.value + " | " +
+                    input_lote.value + " { " + input_detalhe.value + " [ " + 
+                    input_estado.value + " ] } | " + input_raiz.value;
+    
+            }if(acao.value == "NEW"){
+    
+                span.innerHTML = 
+                    acao.value + " | " + input_area_few.value + " | " +
+                    input_lote.value + " { " + input_detalhe.value + " } | " + 
+                    input_raiz.value;
+    
+            }if(acao.value == "REPLACE"){
+    
+                span.innerHTML = 
+                    acao.value + " | " + input_antigo.value + " => " +
+                    input_novo.value + " | { " + input_lista.value + " }";
+    
+            }if(acao.value == "RENAME"){
+    
+                span.innerHTML = 
+                    acao.value + " | " + input_antigo.value + " => " +
+                    input_novo.value + " | " + input_raiz.value;
+    
+            }
+        }
+    
+    
+        acaoInput();
+        
+        acao.addEventListener("input", () => {
+            acaoInput();
+        });
+    
+        all.forEach((tag) => {
+            tag.addEventListener("input", () => {
+                writeCommit();
+            });
+        })
+    
+    </script>
+
+</body>
+
+

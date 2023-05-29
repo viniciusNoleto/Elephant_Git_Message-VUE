@@ -22,68 +22,52 @@
             margin: 0px;
             padding: 25px;
         }
-    
+
         main {
             display: flex;
             flex-direction: column;
+            row-gap: 50px;
             align-items: center;
-
-            height: 100%;
         }
 
-        main > div.img {
+        section.img {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        main > div.img > img {
-            width: 131.5px;
-            height: 119px;
+        section.img img {
+            transform: scale(.8);
         }
 
-        main > div.img > span {
-            font-size: 22px;
-            text-align: center;
+        section.img span {
+            font-size: 20px;
             font-weight: 900;
             color: #777bb3;
         }
-        
-        main > section.main {
-            display: grid;
 
-            grid-template-rows: 1fr 1fr;
-
-            height: 100%;
-            width: 100%;
-            justify-content: center;
-            align-items: center;
-        }
-
-        main > section.main > section.msg {
-            text-align: center;
-        }
-
-        main > section.main > section.form {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-    
-            column-gap: 8px;
-
-            height: 100%;
-            width: 100%;
-        }
-        
-        main > section.main > section.form section.final {
-            display: flex;
-            flex-direction: row;
-        }
-        
-        main > section.main > section.form div {
+        section.main {
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            align-items: center;
+            row-gap: 35px;
+        }
+        
+        section.main section.form {
+            display: flex;
+            flex-direction: row;
+
+            column-gap: 10px;
+        }
+
+        section.main section.msg {
+            font-weight: 600;
+            color: #45487c;
+        }
+
+        div.cell {
+            display: flex;
+            flex-direction: column;
         }
         
         input, select {
@@ -121,14 +105,6 @@
         button.plus{
             background-color: #6683cf;
         }
-
-        span.hidden {
-            color: transparent;
-        }
-    
-        .none {
-            display: none !important;
-        }
     
     </style>
 
@@ -140,16 +116,20 @@
     
     <main>
 
-        <div class="img">
+        <section class="img">
             <img src="logo.png" alt="Logo">
             <span>Elephant Git Message</span>
-        </div>
+        </section>
 
         <section class="main">
             <section class="form">
-                <div>
-                    Ação
-                    <select name="acao">
+                <div class="cell">
+                    Task
+                    <input name="task">
+                </div>
+                <div class="cell">
+                    Action
+                    <select name="action">
                         <option value="ATT">ATT</option>
                         <option value="DEBUG">DEBUG</option>
                         <option value="NEW">NEW</option>
@@ -158,72 +138,30 @@
                         <option value="REPLACE">REPLACE</option>
                     </select>
                 </div>
-                <section name="area">
-                    <div>
-                        Área
-                        <select name="area" id="all">
-                            <option value="API">API</option>
-                            <option value="BACKEND">BACKEND</option>
-                            <option value="ENGINE">ENGINE</option>
-                            <option value="FRONTEND">FRONTEND</option>
-                            <option value="PAGE">PAGE</option>
-                            <option value="SCRIPT">SCRIPT</option>
-                        </select>
-                        <select name="area" id="few">
-                            <option value="API">API</option>
-                            <option value="ENGINE">ENGINE</option>
-                            <option value="PAGE">PAGE</option>
-                            <option value="SCRIPT">SCRIPT</option>
-                        </select>
-                    </div>
-                </section>
-                <section name="atualizacao">
-                    <section class="final">
-                        <div>
-                            Lote
-                            <input name="lote">
-                        </div>
-                        <div>
-                            Detalhe
-                            <input name="detalhe">
-                        </div>
-                        <div>
-                            Estado
-                            <select name="estado">
-                                <option value="js">just start</option>
-                                <option value="wo">working on</option>
-                                <option value="af">almost finished</option>
-                                <option value="ok">ok</option>
-                            </select>
-                        </div>
-                        
-                        <div>
-                            <span class="hidden">_</span>
-                            <button class="plus" onclick="newInput('desc')">+</button>
-                        </div>
-                        <div>
-                            <span class="hidden">_</span>
-                            <button class="minus" onclick="newInput('desc')">-</button>
-                        </div>
-                    </section>
-                </section>
-                <section name="mudanca">
-                    <div>
-                        Antigo
-                        <input name="antigo">
-                    </div>
-                    <div>
-                        Novo
-                        <input name="novo">
-                    </div>
-                </section>
-                <div>
-                    Lista
-                    <input name="lista">
+                <div class="cell">
+                    Area
+                    <select name="area" id="all">
+                        <option value="API">API</option>
+                        <option value="BACKEND">BACKEND</option>
+                        <option value="DOC">DOC</option>
+                        <option value="ENGINE">ENGINE</option>
+                        <option value="FRONTEND">FRONTEND</option>
+                        <option value="PAGE">PAGE</option>
+                        <option value="SCRIPT">SCRIPT</option>
+                    </select>
                 </div>
-                <div>
-                    Raiz
-                    <input name="raiz">
+                <div class="cell">
+                    Details
+                    <input name="details">
+                </div>
+                <div class="cell">
+                    Status
+                    <select name="status">
+                        <option value="JS">Just Start</option>
+                        <option value="WO">Working On</option>
+                        <option value="AF">Almost Finished</option>
+                        <option value="OK">Ok</option>
+                    </select>
                 </div>
             </section>
             <section class="msg"></section>
@@ -232,121 +170,24 @@
     
     <script>
 
-        var acao = document.querySelector("select[name='acao']");
-        
-        var section_area = document.querySelector("section[name='area']");
-        var section_atualizacao = document.querySelector("section[name='atualizacao']");
-        var section_mudanca = document.querySelector("section[name='mudanca']");
+        var all = document.querySelectorAll("input, select");
 
         var msg = document.querySelector(".msg");
 
-        var input_area_all = document.querySelector("select[name='area']#all");
-        var input_area_few = document.querySelector("select[name='area']#few");
-        var input_lote = document.querySelector("input[name='lote']");
-        var input_detalhe = document.querySelector("input[name='detalhe']");
-        var input_estado = document.querySelector("select[name='estado']");
-        var input_antigo = document.querySelector("input[name='antigo']");
-        var input_novo = document.querySelector("input[name='novo']");
-        var input_lista = document.querySelector("input[name='lista']");
-        var input_raiz = document.querySelector("input[name='raiz']");
-
-        var all = document.querySelectorAll("input, select");
-
-
-        function acaoInput(input){
-
-            if(acao.value == "ATT" || acao.value == "DEBUG" || acao.value == "REFAT"){
-
-                section_area.classList.remove('none');
-                input_area_all.classList.remove('none');
-                input_area_few.classList.add('none');
-                section_atualizacao.classList.remove('none');
-                input_estado.classList.remove('none');
-                section_mudanca.classList.add('none');
-                input_lista.classList.add('none');
-                input_raiz.classList.remove('none');
-
-            }if(acao.value == "NEW"){
-
-                section_area.classList.remove('none');
-                input_area_all.classList.add('none');
-                input_area_few.classList.remove('none');
-                section_atualizacao.classList.remove('none');
-                input_estado.classList.add('none');
-                section_mudanca.classList.add('none');
-                input_lista.classList.add('none');
-                input_raiz.classList.remove('none');
-
-            }if(acao.value == "REPLACE"){
-
-                section_area.classList.add('none');
-                section_atualizacao.classList.add('none');
-                section_mudanca.classList.remove('none');
-                input_lista.classList.remove('none');
-                input_raiz.classList.add('none');
-
-            }if(acao.value == "RENAME"){
-
-                section_area.classList.add('none');
-                section_atualizacao.classList.add('none');
-                section_mudanca.classList.remove('none');
-                input_lista.classList.add('none');
-                input_raiz.classList.remove('none');
-
-            }
-
-        }
+        var input_task = document.querySelector("input[name='task']");
+        var input_acao = document.querySelector("select[name='action']");
+        var input_area = document.querySelector("select[name='area']");
+        var input_details = document.querySelector("input[name='details']");
+        var input_status = document.querySelector("select[name='status']");
 
         function writeCommit(){
-            if(acao.value == "ATT" || acao.value == "DEBUG" || acao.value == "REFAT"){
 
-                msg.innerHTML = 
-                    acao.value + " | " + input_area_all.value + " | " +
-                    input_lote.value + " { " + input_detalhe.value + " [ " + 
-                    input_estado.value + " ] } | " + input_raiz.value;
+            msg.innerHTML = 
+                (input_task.value != "" ? input_task.value + " → " : "") +
+                input_acao.value + " | " + input_area.value + " | " + 
+                input_details.value + " [ " + input_status.value + " ]";
 
-            }if(acao.value == "NEW"){
-
-                msg.innerHTML = 
-                    acao.value + " | " + input_area_few.value + " | " +
-                    input_lote.value + " { " + input_detalhe.value + " } | " + 
-                    input_raiz.value;
-
-            }if(acao.value == "REPLACE"){
-
-                msg.innerHTML = 
-                    acao.value + " | " + input_antigo.value + " => " +
-                    input_novo.value + " | { " + input_lista.value + " }";
-
-            }if(acao.value == "RENAME"){
-
-                msg.innerHTML = 
-                    acao.value + " | " + input_antigo.value + " => " +
-                    input_novo.value + " | " + input_raiz.value;
-
-            }
         }
-
-        function newInput(where){
-            if(where == "desc"){
-
-                var new_section = document.createElement('section');
-                new_section.className = "final";
-
-                new_section.appendChild(input_lote.cloneNode(true));
-                new_section.appendChild(input_detalhe.cloneNode(true));
-                new_section.appendChild(input_estado.cloneNode(true));
-                
-                section_atualizacao.appendChild(new_section);
-            }
-        }
-
-
-        acaoInput();
-        
-        acao.addEventListener("input", () => {
-            acaoInput();
-        });
 
         all.forEach((tag) => {
             tag.addEventListener("input", () => {

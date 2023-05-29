@@ -105,6 +105,11 @@
         button.plus{
             background-color: #6683cf;
         }
+
+        .fade-in {
+            transition: opacity 0.5s ease-in-out;
+            opacity: 1;
+        }
     
     </style>
 
@@ -170,31 +175,23 @@
     
     <script>
 
-        var all = document.querySelectorAll("input, select");
-
+        var form = document.querySelector(".form");
         var msg = document.querySelector(".msg");
 
-        var input_task = document.querySelector("input[name='task']");
-        var input_acao = document.querySelector("select[name='action']");
-        var input_area = document.querySelector("select[name='area']");
-        var input_details = document.querySelector("input[name='details']");
-        var input_status = document.querySelector("select[name='status']");
+        var input_task = form.querySelector("input[name='task']");
+        var input_action = form.querySelector("select[name='action']");
+        var input_area = form.querySelector("select[name='area']");
+        var input_details = form.querySelector("input[name='details']");
+        var input_status = form.querySelector("select[name='status']");
 
-        function writeCommit(){
+        function writeCommit(self) {
 
-            msg.innerHTML = 
-                (input_task.value != "" ? input_task.value + " → " : "") +
-                input_acao.value + " | " + input_area.value + " | " + 
-                input_details.value + " [ " + input_status.value + " ]";
+            msg.innerHTML = `${!!input_task.value ? `${input_task.value} → `:""} ${input_action.value} | ${input_area.value} | ${input_details.value} [${input_status.value}] `;
 
         }
 
-        all.forEach((tag) => {
-            tag.addEventListener("input", () => {
-                writeCommit();
-            });
-        })
-    
+        form.addEventListener("input", writeCommit);
+        
     </script>
 
 </body>

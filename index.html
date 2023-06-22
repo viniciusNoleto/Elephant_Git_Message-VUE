@@ -4,196 +4,70 @@
 
     <title>Elephant GM</title>
 
-    <style>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/style.css">
 
-        @font-face {
-            font-family: 'THEBOLDFONT', sans-serif;
-            src: url("font/THEBOLDFONT 2022.otf") format("otf"),
-                url("font/THEBOLDFONT.ttf") format("ttf"),;
-        }
-
-        * {
-            box-sizing: border-box;
-            font-family: 'THEBOLDFONT', sans-serif;
-        }
-    
-        body {
-            background-color: #f8fcff;
-            margin: 0px;
-            padding: 25px;
-        }
-
-        main {
-            display: flex;
-            flex-direction: column;
-            row-gap: 50px;
-            align-items: center;
-        }
-
-        section.img {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        section.img img {
-            transform: scale(.8);
-        }
-
-        section.img span {
-            font-size: 20px;
-            font-weight: 900;
-            color: #777bb3;
-        }
-
-        section.main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            row-gap: 35px;
-        }
-        
-        section.main section.form {
-            display: flex;
-            flex-direction: row;
-
-            column-gap: 10px;
-        }
-
-        section.main section.msg {
-            font-weight: 600;
-            color: #45487c;
-        }
-
-        div.cell {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        input, select {
-            border-radius: 4px;
-
-            padding: 4.5px 5px;
-
-            text-align: center;
-
-            border: 1px solid #63679d;
-            background-color: rgb(250, 250, 250);
-
-            -webkit-transition: all .1s;
-            transition: all .1s ease-in-out;
-
-            outline-style: none;
-        }
-
-        button {
-            border-radius: 4px;
-
-            height: 28px;
-            width: 25px;
-
-            color: whitesmoke;
-            font-weight: bold;
-
-            border: 1px solid #63679d;
-        }
-
-        button.minus{
-            background-color: #e75f5f;
-        }
-
-        button.plus{
-            background-color: #6683cf;
-        }
-
-        .fade-in {
-            transition: opacity 0.5s ease-in-out;
-            opacity: 1;
-        }
-    
-    </style>
-
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <script src="assets/js/write_commit.js" defer></script>
 
 </head>
 
 <body>
     
     <main>
-
-        <section class="img">
-            <img src="logo.png" alt="Logo">
-            <span>Elephant Git Message</span>
-        </section>
-
-        <section class="main">
-            <section class="form">
-                <div class="cell">
-                    Task
-                    <input name="task">
-                </div>
-                <div class="cell">
-                    Action
-                    <select name="action">
-                        <option value="ATT">ATT</option>
-                        <option value="DEBUG">DEBUG</option>
-                        <option value="NEW">NEW</option>
-                        <option value="REFAT">REFAT</option>
-                        <option value="RENAME">RENAME</option>
-                        <option value="REPLACE">REPLACE</option>
-                        <option value="TEST">TEST</option>
-                    </select>
-                </div>
-                <div class="cell">
-                    Area
-                    <select name="area" id="all">
-                        <option value="API">API</option>
-                        <option value="BACKEND">BACKEND</option>
-                        <option value="DOC">DOC</option>
-                        <option value="ENGINE">ENGINE</option>
-                        <option value="FRONTEND">FRONTEND</option>
-                        <option value="PAGE">PAGE</option>
-                        <option value="SCRIPT">SCRIPT</option>
-                    </select>
-                </div>
-                <div class="cell">
-                    Details
-                    <input name="details">
-                </div>
-                <div class="cell">
-                    Status
-                    <select name="status">
-                        <option value="JS">Just Start</option>
-                        <option value="WO">Working On</option>
-                        <option value="AF">Almost Finished</option>
-                        <option value="OK">Ok</option>
-                    </select>
-                </div>
+        <section>
+            <section class="img">
+                <img src="images/logo.png" alt="Logo">
             </section>
-            <section class="msg"></section>
+
+            <section class="main">
+                <section class="form">
+                    <div class="cell">
+                        Task
+                        <input name="task">
+                    </div>
+                    <div class="cell">
+                        Action
+                        <select name="action">
+                            <option value="ATT">ATT</option>
+                            <option value="DEBUG">DEBUG</option>
+                            <option value="NEW">NEW</option>
+                            <option value="REFAT">REFAT</option>
+                            <option value="RENAME">RENAME</option>
+                            <option value="REPLACE">REPLACE</option>
+                            <option value="TEST">TEST</option>
+                        </select>
+                    </div>
+                    <div class="cell">
+                        Area
+                        <select name="area" id="all">
+                            <option value="API">API</option>
+                            <option value="BACKEND">BACKEND</option>
+                            <option value="DOC">DOC</option>
+                            <option value="ENGINE">ENGINE</option>
+                            <option value="FRONTEND">FRONTEND</option>
+                            <option value="PAGE">PAGE</option>
+                            <option value="SCRIPT">SCRIPT</option>
+                        </select>
+                    </div>
+                    <div class="cell">
+                        Details
+                        <input name="details">
+                    </div>
+                    <div class="cell">
+                        Status
+                        <select name="status">
+                            <option value="JS">Just Start</option>
+                            <option value="WO">Working On</option>
+                            <option value="AF">Almost Finished</option>
+                            <option value="OK">Ok</option>
+                        </select>
+                    </div>
+                </section>
+                <section class="msg"></section>
+            </section>
         </section>
+
     </main>
-    
-    <script>
-
-        var form = document.querySelector(".form");
-        var msg = document.querySelector(".msg");
-
-        var input_task = form.querySelector("input[name='task']");
-        var input_action = form.querySelector("select[name='action']");
-        var input_area = form.querySelector("select[name='area']");
-        var input_details = form.querySelector("input[name='details']");
-        var input_status = form.querySelector("select[name='status']");
-
-        function writeCommit(self) {
-
-            msg.innerHTML = `${!!input_task.value ? `${input_task.value} → `:""} ${input_action.value} | ${input_area.value} | ${input_details.value} [${input_status.value}] `;
-
-        }
-
-        form.addEventListener("input", writeCommit);
-        
-    </script>
 
 </body>
 

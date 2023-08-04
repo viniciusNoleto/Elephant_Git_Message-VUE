@@ -26,8 +26,8 @@ body {
 main { 
     padding: 10px;
 
-    height: 70vh;
-    width: 70vw;
+    height: 85vh;
+    width: 85vw;
     
     background: rgb(249, 254, 255);
     box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.6);

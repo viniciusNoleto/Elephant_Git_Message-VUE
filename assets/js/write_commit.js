@@ -31,6 +31,29 @@ new Vue({
                 (this.area != '' && this.desc != '' ? ' | ':'') +
                 this.desc +
                 (this.status != '' ? ' \u{2192} (' + this.status + ')':'');
+        },
+        copyMsg() {
+
+            const temp = document.createElement('input');
+            
+            temp.style.display = "hidden";
+            temp.value = this.msg;
+            document.body.appendChild(temp);
+            
+            temp.select();
+            document.execCommand('copy', false);
+            temp.remove();
+            
+        },
+        clear() {
+
+            this.tarefa = '';
+            this.tipo = '';
+            this.acao = '';
+            this.area = '';
+            this.status = '';
+            this.desc = '';
+            
         }
     }
 });

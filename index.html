@@ -7,63 +7,84 @@
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
     <script src="assets/js/write_commit.js" defer></script>
 
 </head>
 
 <body>
     
-    <main>
+    <main id="app" class="p-4">
         <section>
             <section class="img">
                 <img src="images/logo.png" alt="Logo">
             </section>
 
-            <section class="main">
-                <section class="form">
-                    <div class="cell">
-                        Task
-                        <input name="task">
+            <section class="main py-3 px-5">
+                <section class="container mb-2">
+                    <div class="row mb-3">
+                        <div class="d-flex flex-column col">
+                            <span>Tarefa</span>
+                            <input type="text" name="tarefa" v-model="tarefa">
+                        </div>
+                        <div class="d-flex flex-column col">
+                            <span>Tipo</span>
+                            <select name="tipo" v-model="tipo">
+                                <option value=""></option>
+                                <option value="Feature">Feature</option>
+                                <option value="Hot Fix">Hot Fix</option>
+                            </select>
+                        </div>
+                        <div class="d-flex flex-column col">
+                            <span>Ação</span>
+                            <select name="acao" v-model="acao">
+                                <option value=""></option>
+                                <option value="atualização">atualização</option>
+                                <option value="debug">debug</option>
+                                <option value="novidade">novidade</option>
+                                <option value="refatoração">refatoração</option>
+                                <option value="renomeação">renomeação</option>
+                                <option value="substituição">substituição</option>
+                                <option value="teste">teste</option>
+                            </select>
+                        </div>
+                        <div class="d-flex flex-column col">
+                            <span>Área</span>
+                            <select name="area" v-model="area">
+                                <option value=""></option>
+                                <option value="página">página</option>
+                                <option value="frontend">frontend</option>
+                                <option value="backend">backend</option>
+                                <option value="api">api</option>
+                                <option value="documento">documento</option>
+                                <option value="motor">motor</option>
+                            </select>
+                        </div>
+                        <div class="d-flex flex-column col">
+                            <span>Status</span>
+                            <select name="status" v-model="status">
+                                <option value=""></option>
+                                <option value="começando">começando</option>
+                                <option value="desenvolvendo">desenvolvendo</option>
+                                <option value="finalizando">finalizando</option>
+                                <option value="concluído">concluído</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="cell">
-                        Action
-                        <select name="action">
-                            <option value="ATT">ATT</option>
-                            <option value="DEBUG">DEBUG</option>
-                            <option value="NEW">NEW</option>
-                            <option value="REFAT">REFAT</option>
-                            <option value="RENAME">RENAME</option>
-                            <option value="REPLACE">REPLACE</option>
-                            <option value="TEST">TEST</option>
-                        </select>
-                    </div>
-                    <div class="cell">
-                        Area
-                        <select name="area" id="all">
-                            <option value="API">API</option>
-                            <option value="BACKEND">BACKEND</option>
-                            <option value="DOC">DOC</option>
-                            <option value="ENGINE">ENGINE</option>
-                            <option value="FRONTEND">FRONTEND</option>
-                            <option value="PAGE">PAGE</option>
-                            <option value="SCRIPT">SCRIPT</option>
-                        </select>
-                    </div>
-                    <div class="cell">
-                        Details
-                        <input name="details">
-                    </div>
-                    <div class="cell">
-                        Status
-                        <select name="status">
-                            <option value="JS">Just Start</option>
-                            <option value="WO">Working On</option>
-                            <option value="AF">Almost Finished</option>
-                            <option value="OK">Ok</option>
-                        </select>
+                    <div class="row">
+                        <span>Descrição</span>
+                        <div class="d-flex flex-column">
+                            <textarea name="desc" v-model="desc"></textarea>
+                        </div>
                     </div>
                 </section>
-                <section class="msg"></section>
+
+                <section class="msg p-4">
+                    {{ msg }}
+                </section>
             </section>
         </section>
 

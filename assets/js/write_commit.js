@@ -1,16 +1,36 @@
-var form = document.querySelector(".form");
-var msg = document.querySelector(".msg");
 
-var input_task = form.querySelector("input[name='task']");
-var input_action = form.querySelector("select[name='action']");
-var input_area = form.querySelector("select[name='area']");
-var input_details = form.querySelector("input[name='details']");
-var input_status = form.querySelector("select[name='status']");
-
-function writeCommit(self) {
-
-    msg.innerHTML = `${!!input_task.value ? `${input_task.value} \u{2192} `:""} ${input_action.value} | ${input_area.value} | ${input_details.value} [${input_status.value}] `;
-
-}
-
-form.addEventListener("input", writeCommit);
+new Vue({
+    el: '#app',
+    data: {
+        tarefa: '',
+        tipo: '',
+        acao: '',
+        area: '',
+        status: '',
+        desc: '',
+        msg: ''
+    },
+    watch: {
+        tarefa(newer, older){ this.msgWrite() },
+        tipo(newer, older){ this.msgWrite() },
+        acao(newer, older){ this.msgWrite() },
+        area(newer, older){ this.msgWrite() },
+        status(newer, older){ this.msgWrite() },
+        desc(newer, older){ this.msgWrite() }
+    },
+    methods: {
+        msgWrite(){
+            this.msg = 
+                (this.tarefa != '' ? '[' + this.tarefa + ']':'') +
+                (this.tarefa != '' && this.tipo != '' ? ' ':'') +
+                this.tipo +
+                (this.tarefa != '' || this.tipo != '' ? ': ':'') +
+                this.acao +
+                (this.acao != '' && (this.area != '' || this.desc != '') ? ' | ':'') +
+                this.area +
+                (this.area != '' && this.desc != '' ? ' | ':'') +
+                this.desc +
+                (this.status != '' ? ' \u{2192} (' + this.status + ')':'');
+        }
+    }
+});

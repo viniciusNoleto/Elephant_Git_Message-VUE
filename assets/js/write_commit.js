@@ -24,11 +24,18 @@ new Vue({
                 (this.tarefa != '' ? '[' + this.tarefa + ']':'') +
                 (this.tarefa != '' && this.tipo != '' ? ' ':'') +
                 this.tipo +
-                (this.tarefa != '' || this.tipo != '' ? ': ':'') +
+                (this.tarefa != '' && this.tipo != '' ? ' ':'') +
+                (this.acao != '' || this.area != '' ? '{ ':'') +
                 this.acao +
-                (this.acao != '' && (this.area != '' || this.desc != '') ? ' | ':'') +
+                (this.acao != '' && this.area != '' ? ' | ':'') +
                 this.area +
-                (this.area != '' && this.desc != '' ? ' | ':'') +
+                (this.acao != '' || this.area != '' ? ' }':'') +
+                (
+                    this.tarefa != '' || this.tipo != '' 
+                    || this.area != '' || this.acao != '' 
+                        ? 
+                    ': ':''
+                ) +
                 this.desc +
                 (this.status != '' ? ' \u{2192} (' + this.status + ')':'');
         },

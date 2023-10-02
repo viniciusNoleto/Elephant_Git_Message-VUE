@@ -24,8 +24,7 @@ new Vue({
                 (this.tarefa != '' ? '[' + this.tarefa + ']':'') +
                 (this.tarefa != '' && this.tipo != '' ? ' ':'') +
                 this.tipo +
-                (this.tarefa != '' && this.tipo != '' ? ' ':'') +
-                (this.acao != '' || this.area != '' ? '{ ':'') +
+                (this.acao != '' || this.area != '' ? ' { ':'') +
                 this.acao +
                 (this.acao != '' && this.area != '' ? ' | ':'') +
                 this.area +

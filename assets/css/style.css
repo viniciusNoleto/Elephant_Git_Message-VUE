@@ -93,6 +93,7 @@ button:hover {
 }
 
 button:focus {
-    transition: all .1s ease-in-out;
+    color: whitesmoke;
     background-color: #373a65;
+    transition: all .1s ease-in-out;
 }
